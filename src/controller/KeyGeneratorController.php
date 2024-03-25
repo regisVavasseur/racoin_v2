@@ -4,7 +4,7 @@ namespace App\controller;
 
 use App\model\ApiKey;
 
-class KeyGenerator {
+class KeyGeneratorController {
 
     function show($twig, $menu, $chemin, $cat) {
         $template = $twig->load("key-generator.html.twig");

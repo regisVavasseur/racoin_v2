@@ -11,7 +11,7 @@ use App\model\Annonce;
 use App\model\Annonceur;
 use App\model\Photo;
 
-class viewAnnonceur {
+class ViewAnnonceurController {
     public function __construct(){
     }
     function afficherAnnonceur($twig, $menu, $chemin, $n, $cat) {

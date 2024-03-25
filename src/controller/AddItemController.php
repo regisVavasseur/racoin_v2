@@ -4,7 +4,7 @@ namespace App\controller;
 use App\model\Annonce;
 use App\model\Annonceur;
 
-class addItem
+class AddItemController
 {
 
     function addItemView($twig, $menu, $chemin, $cat, $dpt): void

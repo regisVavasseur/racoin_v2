@@ -5,7 +5,7 @@ namespace App\controller;
 use App\model\Annonce;
 use App\model\Categorie;
 
-class Search {
+class SearchController {
 
     function show($twig, $menu, $chemin, $cat) {
         $template = $twig->load("search.html.twig");

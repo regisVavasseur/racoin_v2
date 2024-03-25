@@ -8,7 +8,7 @@ use App\model\Categorie;
 use App\model\Departement;
 use App\model\Photo;
 
-#[AllowDynamicProperties] class item {
+#[AllowDynamicProperties] class ItemController {
     public function __construct(){
     }
     function afficherItem($twig, $menu, $chemin, $n, $cat): void

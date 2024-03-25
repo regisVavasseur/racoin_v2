@@ -7,7 +7,7 @@ use App\model\Annonceur;
 use App\model\Categorie;
 use App\model\Photo;
 
-class getCategorie
+class GetCategorieController
 {
     private Annonce $annonceModel;
     private Annonceur $annonceurModel;

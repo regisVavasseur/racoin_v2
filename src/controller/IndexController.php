@@ -6,7 +6,7 @@ use App\model\Annonce;
 use App\model\Annonceur;
 use App\model\Photo;
 
-class index
+class IndexController
 {
     private $annonceModel;
     private $annonceurModel;
