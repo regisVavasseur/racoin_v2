@@ -5,6 +5,7 @@ use App\controller\getCategorie;
 use App\controller\getDepartment;
 use App\controller\index;
 use App\controller\item;
+use App\model\Photo;
 use db\connection;
 use App\model\Annonce;
 use App\model\Annonceur;
@@ -68,7 +69,12 @@ $menu = [
 
 $chemin = dirname($_SERVER['SCRIPT_NAME']);
 
-$cat = new getCategorie();
+$annonce = new Annonce();
+$annonceur = new Annonceur();
+$categorie = new Categorie();
+$photo = new Photo();
+
+$cat = new getCategorie($annonce, $annonceur, $categorie, $photo);
 $dpt = new getDepartment();
 
 $app->get('/', function () use ($twig, $menu, $chemin, $cat) {
@@ -148,7 +154,11 @@ $app->post('/del/{n}', function ($request, $response, $arg) use ($twig, $menu, $
 
 $app->get('/cat/{n}', function ($request, $response, $arg) use ($twig, $menu, $chemin, $cat) {
     $n = $arg['n'];
-    $categorie = new \App\controller\getCategorie();
+    $annonceModel = new Annonce();
+    $annonceurModel = new Annonceur();
+    $categorieModel = new Categorie();
+    $photoModel = new Photo();
+    $categorie = new \App\controller\getCategorie($annonceModel, $annonceurModel, $categorieModel, $photoModel);
     $categorie->displayCategorie($twig, $menu, $chemin, $cat->getCategories(), $n);
 });
 
