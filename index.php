@@ -72,7 +72,10 @@ $cat = new getCategorie();
 $dpt = new getDepartment();
 
 $app->get('/', function () use ($twig, $menu, $chemin, $cat) {
-    $index = new index();
+    $annonceModel = new \App\model\Annonce();
+    $annonceurModel = new \App\model\Annonceur();
+    $photoModel = new \App\model\Photo();
+    $index = new \App\controller\index($annonceModel, $annonceurModel, $photoModel);
     $index->displayAllAnnonce($twig, $menu, $chemin, $cat->getCategories());
 });
 

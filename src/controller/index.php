@@ -8,45 +8,46 @@ use App\model\Photo;
 
 class index
 {
-    protected $annonce = array();
+    private $annonceModel;
+    private $annonceurModel;
+    private $photoModel;
+
+    public function __construct(Annonce $annonceModel, Annonceur $annonceurModel, Photo $photoModel)
+    {
+        $this->annonceModel = $annonceModel;
+        $this->annonceurModel = $annonceurModel;
+        $this->photoModel = $photoModel;
+    }
 
     public function displayAllAnnonce($twig, $menu, $chemin, $cat)
     {
         $template = $twig->load("index.html.twig");
-        $menu     = array(
-            array(
+        $menu = [
+            [
                 'href' => $chemin,
                 'text' => 'Acceuil'
-            ),
-        );
+            ],
+        ];
 
-        $this->getAll($chemin);
-        echo $template->render(array(
+        $annonces = $this->getAllAnnonces($chemin);
+
+        echo $template->render([
             "breadcrumb" => $menu,
             "chemin"     => $chemin,
             "categories" => $cat,
-            "annonces"   => $this->annonce
-        ));
+            "annonces"   => $annonces
+        ]);
     }
 
-    public function getAll($chemin)
+    private function getAllAnnonces($chemin)
     {
-        $tmp     = Annonce::with("Annonceur")->orderBy('id_annonce', 'desc')->take(12)->get();
-        $annonce = [];
-        foreach ($tmp as $t) {
-            $t->nb_photo = Photo::where("id_annonce", "=", $t->id_annonce)->count();
-            if ($t->nb_photo > 0) {
-                $t->url_photo = Photo::select("url_photo")
-                    ->where("id_annonce", "=", $t->id_annonce)
-                    ->first()->url_photo;
-            } else {
-                $t->url_photo = '/img/noimg.png';
-            }
-            $t->nom_annonceur = Annonceur::select("nom_annonceur")
-                ->where("id_annonceur", "=", $t->id_annonceur)
-                ->first()->nom_annonceur;
-            array_push($annonce, $t);
-        }
-        $this->annonce = $annonce;
+        $annonces = $this->annonceModel->with("Annonceur")->orderBy('id_annonce', 'desc')->take(12)->get();
+
+        return $annonces->map(function ($annonce) {
+            $annonce->nb_photo = $this->photoModel->where("id_annonce", "=", $annonce->id_annonce)->count();
+            $annonce->url_photo = $annonce->nb_photo > 0 ? $this->photoModel->select("url_photo")->where("id_annonce", "=", $annonce->id_annonce)->first()->url_photo : '/img/noimg.png';
+            $annonce->nom_annonceur = $this->annonceurModel->select("nom_annonceur")->where("id_annonceur", "=", $annonce->id_annonceur)->first()->nom_annonceur;
+            return $annonce;
+        });
     }
 }
