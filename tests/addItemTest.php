@@ -1,6 +1,6 @@
 <?php
 
-use App\controller\addItem;
+use App\controller\addItemController;
 use PHPUnit\Framework\TestCase;
 
 class addItemTest extends TestCase
@@ -9,7 +9,7 @@ class addItemTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->addItem = new addItem();
+        $this->addItem = new addItemController();
 
     }
 
