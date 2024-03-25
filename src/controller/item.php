@@ -1,12 +1,12 @@
 <?php
 
-namespace controller;
+namespace App\controller;
 use AllowDynamicProperties;
-use model\Annonce;
-use model\Annonceur;
-use model\Departement;
-use model\Photo;
-use model\Categorie;
+use App\model\Annonce;
+use App\model\Annonceur;
+use App\model\Categorie;
+use App\model\Departement;
+use App\model\Photo;
 
 #[AllowDynamicProperties] class item {
     public function __construct(){

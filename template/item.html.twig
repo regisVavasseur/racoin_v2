@@ -47,15 +47,15 @@
                             <div class="tocontact">
                                 <p>Contacter <br/>l'annonceur</p>
                             </div>
-                            <a href="mailto:{{ annonceur.email }}"><img src="../img/email2.png" alt="email" title="Contacter l'annonceur"/></a>
+                            <a href="mailto:{{ annonceur.email }}"><img src="../public/img/email2.png" alt="email" title="Contacter l'annonceur"/></a>
                         </div>
                         <div class="columns modify sm-hide-only align-center">
                             <div class="tomodify">
                                 <p>Modifier/Supprimer <br/>l'annonce</p>
                             </div>
                             <div class="align-center">
-                                <a href="{{ chemin }}del/{{ annonce.id_annonce }}"><img src="../img/bin.png" alt="bin" title="Supprimer"/></a>
-                                <a href="{{ chemin }}item/{{ annonce.id_annonce }}/edit"><img src="../img/edit.png" alt="bin" title="Modifier"/></a>
+                                <a href="{{ chemin }}del/{{ annonce.id_annonce }}"><img src="../public/img/bin.png" alt="bin" title="Supprimer"/></a>
+                                <a href="{{ chemin }}item/{{ annonce.id_annonce }}/edit"><img src="../public/img/edit.png" alt="bin" title="Modifier"/></a>
                             </div>
                         </div>
                     </div>
@@ -77,5 +77,5 @@
         </a>
     </div>
     <div id="zoomImg"><div id="zoomClose">x</div><img src="{{ photo.first.url_photo }}" alt=""/></div>
-    <script src="../js/annonce.js" id="sln_bar"></script>
+    <script src="../public/js/annonce.js" id="sln_bar"></script>
 {% endblock %}

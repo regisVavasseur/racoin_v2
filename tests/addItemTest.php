@@ -1,7 +1,7 @@
 <?php
 
+use App\controller\addItem;
 use PHPUnit\Framework\TestCase;
-use controller\addItem;
 
 class addItemTest extends TestCase
 {
